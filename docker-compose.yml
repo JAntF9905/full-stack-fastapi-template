@@ -90,6 +90,7 @@ services:
     env_file:
       - .env
     environment:
+      - FDC_API_KEY=${FDC_API_KEY}
       - DOMAIN=${DOMAIN}
       - FRONTEND_HOST=${FRONTEND_HOST?Variable not set}
       - ENVIRONMENT=${ENVIRONMENT}
