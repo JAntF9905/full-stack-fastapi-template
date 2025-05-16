@@ -121,3 +121,24 @@ def verify_password_reset_token(token: str) -> str | None:
         return str(decoded_token["sub"])
     except InvalidTokenError:
         return None
+
+
+def normalize_price(price_str):
+    """
+    Removes currency symbols and extra whitespace.
+    Adjust this function as needed.
+    """
+    return price_str.strip().replace("$", "")
+
+
+import logging
+
+def setup_logger():
+    logger = logging.getLogger("scraper")
+    if not logger.handlers:
+        logger.setLevel(logging.INFO)
+        handler = logging.StreamHandler()
+        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+        handler.setFormatter(formatter)
+        logger.addHandler(handler)
+    return logger

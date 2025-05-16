@@ -25,6 +25,8 @@ dependencies = [
     "pytest>=7.4.4",
     "beautifulsoup4>=4.13.4",
     "selenium>=4.32.0",
+    "ipykernel>=6.29.5",
+    "webdriver-manager>=4.0.2",
 ]
 
 [tool.uv]

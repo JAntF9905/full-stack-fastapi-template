@@ -55,8 +55,9 @@ cub_orders.db
 # Ignore stubs only if they are auto-generated (otherwise, keep them tracked)
 stubs/
 typings/
-.env
+
 debug_after_modal.png
 debug_initial.png
 debug_signin_fail.png
+
 .env

@@ -16,11 +16,31 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 from typing_extensions import Self
 
 
-def parse_cors(v: Any) -> list[str] | str:
+# def parse_cors(v: Any) -> list[str] | str:
+#     if isinstance(v, str) and not v.startswith("["):
+#         return [i.strip() for i in v.split(",")]
+#     elif isinstance(v, list | str):
+#         return v
+#     raise ValueError(v)
+def parse_cors(v: Any) -> list[str]:
+    """
+    Parse the CORS_ORIGINS environment variable.
+
+    The variable can be a comma separated string, a list of strings, or a single string.
+    If the variable is a string and not a list, it is split into a list by commas.
+    If the variable is a list, each item is converted to a string and stripped.
+    If the variable is not a string or a list, a ValueError is raised.
+
+    Args:
+        v (Any): The value to parse.
+
+    Returns:
+        list[str]: The parsed list of CORS origins.
+    """
     if isinstance(v, str) and not v.startswith("["):
         return [i.strip() for i in v.split(",")]
-    elif isinstance(v, list | str):
-        return v
+    elif isinstance(v, list):
+        return [str(i) for i in v]  # type: ignore
     raise ValueError(v)
 
 
@@ -78,11 +98,10 @@ class Settings(BaseSettings):
     EMAILS_FROM_EMAIL: EmailStr | None = None
     EMAILS_FROM_NAME: EmailStr | None = None
 
-    @model_validator(mode="after")
-    def _set_default_emails_from(self) -> Self:
-        if not self.EMAILS_FROM_NAME:
-            self.EMAILS_FROM_NAME = self.PROJECT_NAME
-        return self
+    @computed_field  # type: ignore[prop-decorator]
+    @property
+    def emails_from_name(self) -> str | None:
+        return self.EMAILS_FROM_NAME or self.PROJECT_NAME
 
     EMAIL_RESET_TOKEN_EXPIRE_HOURS: int = 48
 
