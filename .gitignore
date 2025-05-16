@@ -1,7 +1,56 @@
-.vscode
+# VS Code settings
+.vscode/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.egg-info/
+htmlcov/
+.env
+.env.*
+*.env
+*.log
+
+# Test and coverage
+test-results/
+.playwright-report/
+.blob-report/
+.playwright/.cache/
+coverage.*
+.pytest_cache/
+.cache/
+.mypy_cache/
+.dmypy.json
+.pyre/
+.pyright/
+
+# Node.js
 node_modules/
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
+dist/
+build/
+*.tsbuildinfo
+
+# macOS
 .DS_Store
+
+# Docker
+*.pid
+
+# Frontend build
+frontend/dist/
+frontend/build/
+frontend/.vite/
+
+# Misc
+*.swp
+*.swo
+
+# Ignore local database files
+cub_orders.db
+
+# Ignore stubs only if they are auto-generated (otherwise, keep them tracked)
+# stubs/
