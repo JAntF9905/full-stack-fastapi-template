@@ -20,6 +20,7 @@ fileConfig(config.config_file_name)
 
 from app.models import SQLModel  # noqa
 from app.core.config import settings # noqa
+from app.store_model import Store, Product, ProductAvailability, Order as StoreOrder, OrderItem as StoreOrderItem, FoodItem, PriceHistory
 
 target_metadata = SQLModel.metadata
 
@@ -61,7 +62,7 @@ def run_migrations_online():
     and associate a connection with the context.
 
     """
-    configuration = config.get_section(config.config_ini_section)
+    configuration = config.get_section(config.config_ini_section) or {}
     configuration["sqlalchemy.url"] = get_url()
     connectable = engine_from_config(
         configuration,

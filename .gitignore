@@ -1,6 +1,9 @@
 # VS Code settings
 .vscode/
 
+# SpecStory
+.specstory/
+
 # Python
 __pycache__/
 *.pyc

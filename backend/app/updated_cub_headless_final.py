@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 from dotenv import load_dotenv
 
 from app import create_app
-from app.services import save_product
+# from app.services import save_product
 from app.utils import setup_logger
 
 # Load your environment variables
